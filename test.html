@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      #content {
+        width: 400px;
+        height: 500px;
+        margin: 50px auto;
+
+        background-color: #3e4648;
+        padding: 20px 0;
+      }
+      #display {
+        height: 70px;
+        text-align: right;
+        font-size: 25px;
+        border: 1px solid black;
+        margin: auto;
+        width: 320px;
+        background-color: #bfcc9a;
+        font-size: 60px;
+      }
+      #buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 80px);
+        grid-template-rows: minmax(auto, 80px) repeat(5, 80px);
+        width: 320px;
+        margin: 40px auto;
+      }
+      #buttons button {
+        border: 1px solid black;
+        margin: 10px;
+        border-radius: 30%;
+        font-size: 25px;
+        background-color: #303030;
+        color: white;
+      }
+      #buttons .equal {
+        background-color: #f1a14a;
+        color: black;
+      }
+      #buttons .operator {
+        background-color: #ec5d66;
+        color: black;
+      }
+    </style>
+    <div id="content">
+      <div id="display"></div>
+      <div id="buttons">
+        <button>%</button>
+        <button>^</button>
+        <button>Del</button>
+        <button class="operator">/</button>
+        <button>9</button>
+        <button>8</button>
+        <button>7</button>
+        <button class="operator">*</button>
+        <button>6</button>
+        <button>5</button>
+        <button>4</button>
+        <button class="operator">-</button>
+        <button>3</button>
+        <button>2</button>
+        <button>1</button>
+        <button class="operator">+</button>
+        <button>0</button>
+        <button>,</button>
+        <button>AC</button>
+        <button class="equal">=</button>
+      </div>
+    </div>
+    <script>
+      let display = document.querySelector("#display");
+      let buttons = document.querySelectorAll("#buttons");
+
+      buttons.forEach((button) =>
+        button.addEventListener("click", function (e) {
+          if (e.target.textContent === "AC") {
+            display.innerText = "0";
+            return;
+          } else if (e.target.textContent === "Del") {
+            display.innerText = display.innerText.slice(0, -1);
+            return;
+          } else if (e.target.textContent === "%") {
+            display.innerText = eval(display.innerText) / 100;
+            return;
+          } else if (
+            e.target.textContent === "," ||
+            e.target.textContent === "*" ||
+            e.target.textContent === "/" ||
+            e.target.textContent === "+" ||
+            e.target.textContent === "-" ||
+            e.target.textContent === "^"
+          ) {
+            if (
+              display.innerText.slice(-1) === "," ||
+              display.innerText.slice(-1) === "*" ||
+              display.innerText.slice(-1) === "/" ||
+              display.innerText.slice(-1) === "+" ||
+              display.innerText.slice(-1) === "-" ||
+              display.innerText.slice(-1) === "^"
+            ) {
+              display.innerText =
+                display.innerText.slice(0, -1) + e.target.textContent;
+              display.innerText = eval(display.innerText);
+            } else {
+              display.innerText += e.target.textContent;
+              display.innerText = eval(display.innerText);
+            }
+          } else if (e.target.textContent === "=") {
+            if (
+              display.innerText.includes("^") ||
+              display.innerText.includes(",")
+            ) {
+              const updateDisplay = display.innerText
+                .replaceAll("^", "**")
+                .replaceAll(",", ".");
+              display.innerText = eval(updateDisplay);
+            } else display.innerText = eval(display.innerText);
+          } else {
+            display.innerText += e.target.textContent;
+          }
+        })
+      );
+    </script>
+  </body>
+</html>
