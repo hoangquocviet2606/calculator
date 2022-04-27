@@ -1,0 +1,43 @@
+
+    #content {
+    width: 400px;
+    height: 500px;
+    margin: 50px auto;
+
+    background-color: #3e4648;
+    padding: 20px 0;
+    }
+    #display {
+    height: 70px;
+    text-align: right;
+    font-size: 25px;
+    border: 1px solid black;
+    margin: auto;
+    width: 320px;
+    background-color: #bfcc9a;
+    font-size: 60px;
+    cursor: none;
+    }
+    #buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 80px);
+    grid-template-rows: minmax(auto, 80px) repeat(5, 80px);
+    width: 320px;
+    margin: 40px auto;
+    }
+    #buttons button {
+    border: 1px solid black;
+    /* margin: 10px; */
+    /* border-radius: 30%; */
+    font-size: 25px;
+    background-color: #303030;
+    color: white;
+    }
+    #buttons .equal {
+    background-color: #f1a14a;
+    color: black;
+    }
+    #buttons .operator {
+    background-color: #ec5d66;
+    color: black;
+    }
