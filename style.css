@@ -27,8 +27,8 @@
     }
     #buttons button {
     border: 1px solid black;
-    /* margin: 10px; */
-    /* border-radius: 30%; */
+    margin: 10px;
+    border-radius: 30%;
     font-size: 25px;
     background-color: #303030;
     color: white;
